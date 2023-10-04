@@ -1,6 +1,6 @@
-﻿using infrastructure.Terrains.Generators.Core;
+﻿using Infrastructure.Terrains.Generators.Core;
 
-namespace infrastructure.Terrains.Generators
+namespace Infrastructure.Terrains.Generators
 {
   /// <summary>
   ///   Provides factory methods to create instances of terrain generators based on specified generation methods.

@@ -1,4 +1,4 @@
-﻿namespace infrastructure.Terrains.Core
+﻿namespace Infrastructure.Terrains.Core
 {
   /// <summary>
   ///   The data for a generated terrain.

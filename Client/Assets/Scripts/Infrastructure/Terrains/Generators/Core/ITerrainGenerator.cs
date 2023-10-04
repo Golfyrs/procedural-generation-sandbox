@@ -1,6 +1,6 @@
-﻿using infrastructure.Terrains.Core;
+﻿using Infrastructure.Terrains.Core;
 
-namespace infrastructure.Terrains.Generators.Core
+namespace Infrastructure.Terrains.Generators.Core
 {
   /// <summary>
   ///   Provides methods for generating terrain data, supporting both full terrain and chunk-based generation.

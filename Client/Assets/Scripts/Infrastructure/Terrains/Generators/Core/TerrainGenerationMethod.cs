@@ -1,4 +1,4 @@
-﻿namespace infrastructure.Terrains.Generators.Core
+﻿namespace Infrastructure.Terrains.Generators.Core
 {
   /// <summary>
   ///   The terrain generation method.
