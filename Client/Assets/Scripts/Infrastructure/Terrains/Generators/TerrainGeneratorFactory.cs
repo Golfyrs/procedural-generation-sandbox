@@ -1,4 +1,6 @@
-﻿using Infrastructure.Terrains.Generators.Core;
+﻿using System;
+using Infrastructure.Terrains.Generators.Core;
+using Infrastructure.Terrains.Generators.PerlinNoises;
 
 namespace Infrastructure.Terrains.Generators
 {
@@ -20,9 +22,12 @@ namespace Infrastructure.Terrains.Generators
     /// <param name="amplitude">The amplitude for terrain generation.</param>
     /// <param name="frequency">The frequency for terrain generation.</param>
     /// <returns>An instance of <see cref="ITerrainGenerator"/> configured with the specified parameters.</returns>
-    public static ITerrainGenerator Create(TerrainGenerationMethod method, int seed, float scale, float amplitude, float frequency)
-    {
-      return null;
-    }
+    public static ITerrainGenerator Create(TerrainGenerationMethod method, int seed, float scale, float amplitude, float frequency) =>
+      method switch
+      {
+        TerrainGenerationMethod.PerlinNoise => new PerlinNoiseTerrainGenerator(seed, scale, amplitude, frequency),
+
+        var _ => throw new ArgumentOutOfRangeException(nameof(method), method, null),
+      };
   }
 }
