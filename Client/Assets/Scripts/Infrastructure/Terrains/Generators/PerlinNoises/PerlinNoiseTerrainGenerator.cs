@@ -30,11 +30,11 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
       for (var x = 0; x < width; x++)
       for (var y = 0; y < height; y++)
       {
-        var perlinValue = PerlinNoise(x * _scale, y * _scale) * _amplitude;
+        var perlinValue = PerlinNoise(x * _scale * _frequency, y * _scale * _frequency) * _amplitude;
         heights[x, y] = perlinValue;
       }
 
-      return new TerrainData(heights);
+      return new(heights);
 
     }
 
@@ -44,11 +44,11 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
       for (var x = 0; x < chunkWidth; x++)
       for (var y = 0; y < chunkHeight; y++)
       {
-        var perlinValue = PerlinNoise((startX + x) * _scale, (startY + y) * _scale) * _amplitude;
+        var perlinValue = PerlinNoise((startX + x) * _scale * _frequency, (startY + y) * _scale * _frequency) * _amplitude;
         heights[x, y] = perlinValue;
       }
 
-      return new TerrainData(heights);
+      return new(heights);
     }
 
     // TODO: Replace with actual Perlin noise implementation. Also better to use double instead of float.
