@@ -14,7 +14,8 @@ namespace Examples._1._Perlin_noise.Debug
     [Range(1, 2500)] [SerializeField] private int width = 256;
     [Range(1, 2500)] [SerializeField] private int height = 256;
     [SerializeField] private int seed = 0;
-    [SerializeField] private float scale = 1f;
+    [Range(0.01f, 100)] [SerializeField] private float scale = 1f;
+    [Range(0.01f, 100)] [SerializeField] private float scaleDivider = 100f;
     [SerializeField] private float amplitude = 1;
     [SerializeField] private float frequency = 1;
 
@@ -22,7 +23,7 @@ namespace Examples._1._Perlin_noise.Debug
 
     public void Visualize()
     {
-      var generator = TerrainGeneratorFactory.Create(TerrainGenerationMethod.PerlinNoise, seed, scale, amplitude, frequency);
+      var generator = TerrainGeneratorFactory.Create(TerrainGenerationMethod.PerlinNoise, seed, scale / scaleDivider, amplitude, frequency);
       var terrainData = generator.Create(width, height);
 
       var texture = new Texture2D(width, height);

@@ -12,25 +12,26 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
     private readonly float _amplitude;
     private readonly float _frequency;
 
-    private readonly Random _random;
-
     public PerlinNoiseTerrainGenerator(int seed, float scale, float amplitude, float frequency)
     {
       _seed = seed;
       _scale = scale;
       _amplitude = amplitude;
       _frequency = frequency;
-
-      _random = new Random(seed);
     }
 
     public TerrainData Create(int width, int height)
     {
+      var method = new PerlinNoiseMethod(_seed, width, height).Initialize();
+
       var heights = new float[width,height];
       for (var x = 0; x < width; x++)
       for (var y = 0; y < height; y++)
       {
-        var perlinValue = PerlinNoise(x * _scale * _frequency, y * _scale * _frequency) * _amplitude;
+        var posX = x * _scale * _frequency;
+        var posY = y * _scale * _frequency;
+
+        var perlinValue = method.Value(posX, posY) * _amplitude;
         heights[x, y] = perlinValue;
       }
 
@@ -40,19 +41,19 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
 
     public TerrainData CreateChunk(int startX, int startY, int chunkWidth, int chunkHeight)
     {
+      var method = new PerlinNoiseMethod(_seed, chunkWidth, chunkHeight).Initialize();
+
       var heights = new float[chunkWidth,chunkHeight];
       for (var x = 0; x < chunkWidth; x++)
       for (var y = 0; y < chunkHeight; y++)
       {
-        var perlinValue = PerlinNoise((startX + x) * _scale * _frequency, (startY + y) * _scale * _frequency) * _amplitude;
+        var posX = (startX + x) * _scale * _frequency;
+        var posY = (startY + y) * _scale * _frequency;
+        var perlinValue = method.Value(posX, posY) * _amplitude;
         heights[x, y] = perlinValue;
       }
 
       return new(heights);
     }
-
-    // TODO: Replace with actual Perlin noise implementation. Also better to use double instead of float.
-    private static float PerlinNoise(float x, float y) =>
-      Mathf.PerlinNoise(x, y);
   }
 }
