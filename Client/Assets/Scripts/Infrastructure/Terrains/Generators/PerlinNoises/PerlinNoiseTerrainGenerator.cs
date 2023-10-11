@@ -1,6 +1,6 @@
-﻿using Infrastructure.Terrains.Generators.Core;
+﻿using System.Text;
+using Infrastructure.Terrains.Generators.Core;
 using UnityEngine;
-using Random = System.Random;
 using TerrainData = Infrastructure.Terrains.Core.TerrainData;
 
 namespace Infrastructure.Terrains.Generators.PerlinNoises
@@ -31,12 +31,12 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
         var posX = x * _scale * _frequency;
         var posY = y * _scale * _frequency;
 
+        // var perlinValue = Mathf.PerlinNoise(posX + _seed * 10, posY + _seed * 10) * _amplitude;
         var perlinValue = method.Value(posX, posY) * _amplitude;
         heights[x, y] = perlinValue;
       }
 
       return new(heights);
-
     }
 
     public TerrainData CreateChunk(int startX, int startY, int chunkWidth, int chunkHeight)
@@ -49,6 +49,8 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
       {
         var posX = (startX + x) * _scale * _frequency;
         var posY = (startY + y) * _scale * _frequency;
+
+        // var perlinValue = Mathf.PerlinNoise(posX + _seed * 10, posY + _seed * 10) * _amplitude;
         var perlinValue = method.Value(posX, posY) * _amplitude;
         heights[x, y] = perlinValue;
       }
