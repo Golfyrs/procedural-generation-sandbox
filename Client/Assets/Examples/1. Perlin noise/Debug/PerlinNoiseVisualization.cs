@@ -39,7 +39,7 @@ namespace Examples._1._Perlin_noise.Debug
       texture.SetPixels(colors);
       texture.Apply();
 
-      renderer.material.mainTexture = texture;
+      renderer.sharedMaterial.mainTexture = texture;
     }
   }
 }
