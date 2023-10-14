@@ -37,7 +37,7 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
           var randomX = (float) Math.Cos(randomAngle);
           var randomY = (float) Math.Sin(randomAngle);
 
-          corners.Add(new(randomX, randomY));
+          corners.Add(new float2(randomX, randomY));
         }
       }
     }
@@ -69,7 +69,7 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
       var left = math.lerp(dotTopLeft, dotBottomLeft, smoothY);
       var right = math.lerp(dotTopRight, dotBottomRight, smoothY);
 
-      return math.lerp(left, right, smoothX) * 0.5f + 0.5f;
+      return math.lerp(left, right, smoothX) + 0.5f;
 
       // Optimized version (less multiplications) of fade function.
       float Fade(float t) => ((6 * t - 15) * t + 10) * t * t * t;

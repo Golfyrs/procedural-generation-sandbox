@@ -32,6 +32,7 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
         var posY = y * _scale * _frequency;
 
         // var perlinValue = Mathf.PerlinNoise(posX + _seed * 10, posY + _seed * 10) * _amplitude;
+
         var perlinValue = method.Value(posX, posY) * _amplitude;
         heights[x, y] = perlinValue;
       }
@@ -51,6 +52,7 @@ namespace Infrastructure.Terrains.Generators.PerlinNoises
         var posY = (startY + y) * _scale * _frequency;
 
         // var perlinValue = Mathf.PerlinNoise(posX + _seed * 10, posY + _seed * 10) * _amplitude;
+
         var perlinValue = method.Value(posX, posY) * _amplitude;
         heights[x, y] = perlinValue;
       }

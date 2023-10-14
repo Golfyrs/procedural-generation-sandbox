@@ -30,8 +30,8 @@ namespace Infrastructure.Terrains
     [Range(0.01f, 100)] [SerializeField] private float scale = 1f;
     [Range(0.01f, 100)] [SerializeField] private float scaleDivider = 100f;
 
-    [SerializeField] private float amplitude = 1;
-    [SerializeField] private float frequency = 1;
+    [Range(0.001f, 10)] [SerializeField] private float amplitude = 1;
+    [Range(0.001f, 10)] [SerializeField] private float frequency = 1;
 
     public void Regenerate()
     {
@@ -46,16 +46,22 @@ namespace Infrastructure.Terrains
       {
         var height = terrainData.Heights[x, y];
 
+        var assignedColor = regions[^1].Color;
+
         foreach (var region in regions)
         {
           if (height <= region.Height)
           {
-            colors[y * width + x] = region.Color;
+            assignedColor = region.Color;
             break;
           }
         }
+
+        colors[y * width + x] = assignedColor;
       }
 
+      texture.filterMode = FilterMode.Point;
+      texture.wrapMode = TextureWrapMode.Clamp;
       texture.SetPixels(colors);
       texture.Apply();
 
