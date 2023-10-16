@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace Infrastructure.Terrains
 {
+  /// <summary>
+  ///   Generates a terrain using a <see cref="ITerrainGenerator"/>.
+  ///   Transform the generated terrain into a texture with regions and apply it to a <see cref="Renderer"/>.
+  /// </summary>
   public class TerrainGenerator : MonoBehaviour
   {
     [SerializeField] public List<TerrainRegion> regions = new List<TerrainRegion>
